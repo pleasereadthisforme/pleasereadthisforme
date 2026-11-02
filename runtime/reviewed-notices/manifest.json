@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "parser_sha256": "354ee84dbc2cf8b22fef1aab81c23476b3bd3120b96369b9e14d4946823fc948",
+  "msys_dll_sha256": "2a89b7c31b323c42e2fb37900af087aeb27417694e630a210bc75b0369410bc7",
+  "sources": [
+    {
+      "component": "org.opendataloader:opendataloader-pdf-core:2.5.11",
+      "url": "https://repo.maven.apache.org/maven2/org/opendataloader/opendataloader-pdf-core/2.5.11/opendataloader-pdf-core-2.5.11-sources.jar",
+      "sha256": "e4e50c53b60c2d412339c992ab2f92225a8ba9a2d13e6b71e72848bbc12a9f8a"
+    },
+    {
+      "component": "org.verapdf:validation-model:1.31.175",
+      "url": "https://artifactory.openpreservation.org/artifactory/vera-dev/org/verapdf/validation-model/1.31.175/validation-model-1.31.175-sources.jar",
+      "sha256": "2e2414ed05cd7276ec62810cdde7154b719e3951af6b25e6548ed78aa83ca30c"
+    },
+    {
+      "component": "org.verapdf:pdf-model:1.31.13",
+      "url": "https://artifactory.openpreservation.org/artifactory/vera-dev/org/verapdf/pdf-model/1.31.13/pdf-model-1.31.13-sources.jar",
+      "sha256": "92f4d79df7cd4075aae5db573886c24ba098e9a26fcbff3a5a22d18fedfa12a6"
+    },
+    {
+      "component": "org.verapdf:metadata-fixer:1.31.175",
+      "url": "https://artifactory.openpreservation.org/artifactory/vera-dev/org/verapdf/metadata-fixer/1.31.175/metadata-fixer-1.31.175-sources.jar",
+      "sha256": "f4f1ccb8fdd50e3b10336d509ea183813615c2f655971303a4a3a219b9d32f7e"
+    },
+    {
+      "component": "org.verapdf:wcag-validation:1.31.175",
+      "url": "https://artifactory.openpreservation.org/artifactory/vera-dev/org/verapdf/wcag-validation/1.31.175/wcag-validation-1.31.175-sources.jar",
+      "sha256": "d72f0f5a2a2d913f283790651737077ce3d2f4088487bafe4e4f98c77dccc0b4"
+    },
+    {
+      "component": "org.verapdf:core:1.31.37",
+      "url": "https://artifactory.openpreservation.org/artifactory/vera-dev/org/verapdf/core/1.31.37/core-1.31.37-sources.jar",
+      "sha256": "99d91e9efd97391d671bac8c8e0db2c2dffb27050d6121a58b7ee9ad0b1b73d0"
+    },
+    {
+      "component": "javax.xml.bind:jaxb-api:2.4.0-b180830.0359",
+      "url": "https://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.4.0-b180830.0359/jaxb-api-2.4.0-b180830.0359-sources.jar",
+      "sha256": "80bf9ccae5e202fd898340ba1e8daf061d3e539d21c6dbd238a4cac919b84f15"
+    },
+    {
+      "component": "javax.activation:javax.activation-api:1.2.0",
+      "url": "https://repo.maven.apache.org/maven2/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0-sources.jar",
+      "sha256": "d7411fb29089cafa4b77493f10bfb52832cd1976948903d0b039e12b0bd70334"
+    },
+    {
+      "component": "org.glassfish.jaxb:jaxb-runtime:2.3.2",
+      "url": "https://repo.maven.apache.org/maven2/org/glassfish/jaxb/jaxb-runtime/2.3.2/jaxb-runtime-2.3.2-sources.jar",
+      "sha256": "b85c2e314e6565e7dc4fb7e00ec8688c1c0fe9c9f7275125fb8dee43898f3743"
+    },
+    {
+      "component": "com.sun.xml.bind:jaxb-impl:2.3.2",
+      "url": "https://repo.maven.apache.org/maven2/com/sun/xml/bind/jaxb-impl/2.3.2/jaxb-impl-2.3.2-sources.jar",
+      "sha256": "f9b79e69b82e52160fea14388eedc895109f56199e4bb4bedfb21adb273a86d8"
+    },
+    {
+      "component": "com.sun.istack:istack-commons-runtime:3.0.5",
+      "url": "https://repo.maven.apache.org/maven2/com/sun/istack/istack-commons-runtime/3.0.5/istack-commons-runtime-3.0.5-sources.jar",
+      "sha256": "92235ba19d5776456a89b469100de2033e838aaeffc69ad98044603b8e8f0ea1"
+    },
+    {
+      "component": "org.glassfish.jaxb:jaxb-core:2.3.0.1",
+      "url": "https://repo.maven.apache.org/maven2/org/glassfish/jaxb/jaxb-core/2.3.0.1/jaxb-core-2.3.0.1-sources.jar",
+      "sha256": "c3b2ac8a47dc81dbb99818283c23e83e63fc6dccb01ee3062437b46614f4e11f"
+    },
+    {
+      "component": "org.glassfish.jaxb:txw2:2.3.0.1",
+      "url": "https://repo.maven.apache.org/maven2/org/glassfish/jaxb/txw2/2.3.0.1/txw2-2.3.0.1-sources.jar",
+      "sha256": "7815dad139de674d13fa73af7ae70dfee1db3b4d631f2d2596416ff2ba883cd3"
+    },
+    {
+      "component": "com.sun.xml.bind:jaxb-core:2.3.0.1",
+      "url": "https://repo.maven.apache.org/maven2/com/sun/xml/bind/jaxb-core/2.3.0.1/jaxb-core-2.3.0.1-sources.jar",
+      "sha256": "d628f0d4d24e5a89842a81533da9f5eb4dd7c9bd5e2321c3ded3785e3f28a65f"
+    },
+    {
+      "component": "org.verapdf:verapdf-xmp-core:1.31.37",
+      "url": "https://artifactory.openpreservation.org/artifactory/vera-dev/org/verapdf/verapdf-xmp-core/1.31.37/verapdf-xmp-core-1.31.37-sources.jar",
+      "sha256": "b951e7003a2e8d8672a591fded72cef6eaefa8b71a438d81521bc41165d301c7"
+    },
+    {
+      "component": "org.apache.pdfbox:pdfbox-io:3.0.4",
+      "url": "https://repo.maven.apache.org/maven2/org/apache/pdfbox/pdfbox-io/3.0.4/pdfbox-io-3.0.4-sources.jar",
+      "sha256": "70fce8769c25589778bd8b06fb695a31828eb62fc2c751e722f2eaf49b92f171"
+    },
+    {
+      "component": "com.fasterxml.jackson.core:jackson-databind:2.22.2",
+      "url": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.22.2/jackson-databind-2.22.2-sources.jar",
+      "sha256": "c14e77fd28bedde121ad260f84a9c52f13b72063e40030c464bd9f5f95e7274c"
+    },
+    {
+      "component": "com.fasterxml.jackson.core:jackson-core:2.22.2",
+      "url": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.22.2/jackson-core-2.22.2-sources.jar",
+      "sha256": "544f2df3406129f9d99e090b05a5417ef8421608644b6b46a084325c6bde4de4"
+    },
+    {
+      "component": "com.fasterxml.jackson.core:jackson-annotations:2.22",
+      "url": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.22/jackson-annotations-2.22-sources.jar",
+      "sha256": "f5375c756ee3c585808f9937eb087d074743fd3f05f6aeff9b183cf19230c9f7"
+    },
+    {
+      "component": "org.jetbrains:annotations:13.0",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/annotations/13.0/annotations-13.0-sources.jar",
+      "sha256": "42a5e144b8e81d50d6913d1007b695e62e614705268d8cf9f13dbdc478c2c68e"
+    },
+    {
+      "component": "commons-cli:commons-cli:1.11.0",
+      "url": "https://repo.maven.apache.org/maven2/commons-cli/commons-cli/1.11.0/commons-cli-1.11.0-sources.jar",
+      "sha256": "c65b544468eafd3e1036671fb22fd9ba4c3f67c03f76298e8aaeb6943755a70b"
+    },
+    {
+      "component": "org.verapdf:parser:1.31.55",
+      "url": "https://artifactory.openpreservation.org/artifactory/vera-dev/org/verapdf/parser/1.31.55/parser-1.31.55-sources.jar",
+      "sha256": "d2438d2ee9fc4c1648c65a38d9314095eee56b83f8a37970f026a5ece5c258b8"
+    },
+    {
+      "component": "org.verapdf:wcag-algorithms:1.31.44",
+      "url": "https://artifactory.openpreservation.org/artifactory/vera-dev/org/verapdf/wcag-algorithms/1.31.44/wcag-algorithms-1.31.44-sources.jar",
+      "sha256": "8675367400986819aa61cec7d45add92bbdfc3bd6d42c04591c3a768a4389ab8"
+    },
+    {
+      "component": "com.github.jai-imageio:jai-imageio-core:1.4.0",
+      "url": "https://repo.maven.apache.org/maven2/com/github/jai-imageio/jai-imageio-core/1.4.0/jai-imageio-core-1.4.0-sources.jar",
+      "sha256": "9983a2c2dac7eb7d8180f91d90a720cd66a83e7e502f5382e685c77f19cca276"
+    },
+    {
+      "component": "com.github.jai-imageio:jai-imageio-jpeg2000:1.3.0",
+      "url": "https://repo.maven.apache.org/maven2/com/github/jai-imageio/jai-imageio-jpeg2000/1.3.0/jai-imageio-jpeg2000-1.3.0-sources.jar",
+      "sha256": "143b79069e23b7b8a0e9591f6e2b81ad7c452abd780902db9fc7b3f3ef82e230"
+    },
+    {
+      "component": "org.apache.pdfbox:jbig2-imageio:3.0.3",
+      "url": "https://repo.maven.apache.org/maven2/org/apache/pdfbox/jbig2-imageio/3.0.3/jbig2-imageio-3.0.3-sources.jar",
+      "sha256": "9ba4fa5f60d43c64c3bf13f03994c173c1b32325e35e2899aaa53522dc02f91a"
+    },
+    {
+      "component": "org.apache.pdfbox:pdfbox:3.0.4",
+      "url": "https://repo.maven.apache.org/maven2/org/apache/pdfbox/pdfbox/3.0.4/pdfbox-3.0.4-sources.jar",
+      "sha256": "98cd8ef71e18573a92eab2f0f141363695fdf6bf073dd570429f50e104b55213"
+    },
+    {
+      "component": "org.apache.pdfbox:fontbox:3.0.4",
+      "url": "https://repo.maven.apache.org/maven2/org/apache/pdfbox/fontbox/3.0.4/fontbox-3.0.4-sources.jar",
+      "sha256": "3b23310beddc45c8be9494b8caedbb0c1125980037314e550e9f091c2ea687c8"
+    },
+    {
+      "component": "commons-logging:commons-logging:1.3.4",
+      "url": "https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.3.4/commons-logging-1.3.4-sources.jar",
+      "sha256": "c9a3438a5a3f3cb38ca4c1e551559a35168b333a739b683dfbee8c04cb018a20"
+    },
+    {
+      "component": "Git for Windows git-for-windows/MSYS2-packages",
+      "url": "https://codeload.github.com/git-for-windows/MSYS2-packages/tar.gz/546c20097ac698c722d2c1c882d5b5fe42367246",
+      "sha256": "000787b2aa7f9c9370c14db7a4a9f187b426746c441e6a48401a5e0f86eadbc9"
+    },
+    {
+      "component": "Git for Windows git-for-windows/msys2-runtime",
+      "url": "https://codeload.github.com/git-for-windows/msys2-runtime/tar.gz/5a1665c8a0fb24930e55f1621441dfd98a798c15",
+      "sha256": "ce1a003f647119738875010630a25c032c161b5c72cceb8416c5b551781391a9"
+    }
+  ]
+}

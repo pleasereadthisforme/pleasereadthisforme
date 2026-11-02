@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "binaries": {
+    "usr/bin/cat.exe": "f1b37048ee5c70fdc31dde509e562261c9b2d102d94c903393f55b45e883ef90",
+    "usr/bin/find.exe": "1729ceebf52cf72bf1fc955af8167f2ba8ecbffa928fa386818affc5a60224fd",
+    "usr/bin/grep.exe": "497202418334f8a48d9f34cd2e1b2c03c4f957e02304b613e10931c0457e8d4a",
+    "usr/bin/sed.exe": "8d54e322dfc3faa60f0464691aba8634197406e53367aa8942409181c0808be8",
+    "usr/bin/msys-2.0.dll": "2a89b7c31b323c42e2fb37900af087aeb27417694e630a210bc75b0369410bc7",
+    "usr/bin/msys-iconv-2.dll": "50012969ed96a5232220185d2fc1ac1e3abe5790f6b3027f4fc3c4cad3fd38f0",
+    "usr/bin/msys-intl-8.dll": "50f7de0c712d867ddca2c9eb8562ca6ee2d69e120e798ec6126ad29dd1ed5402",
+    "usr/bin/msys-pcre-1.dll": "a94b1a5ba095ac7ff81e138a1231e42e3a07391e85eeb86c3bb5c9245244597a"
+  }
+}

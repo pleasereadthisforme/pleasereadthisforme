@@ -1,0 +1,118 @@
+# Default deny: only runtime/build sources, required assets/configuration,
+# and the explicitly selected READMEs below are eligible for Git.
+# Unignored does NOT mean staged, committed, or uploaded.
+/*
+!/.gitignore
+!/README.md
+!/README.ko.md
+!/LICENSE
+!/LICENSING.md
+!/BRAND_USAGE.md
+!/PRIVACY.md
+!/TERMS.md
+
+# Python runtime, dependency/build metadata, and bundled UI assets.
+!/sidecar/
+/sidecar/*
+!/sidecar/src/
+!/sidecar/pyproject.toml
+!/sidecar/uv.lock
+!/sidecar/README.md
+
+# Native host, installer source, required manifests and legal notice.
+!/desktop/
+/desktop/*
+!/desktop/README.md
+!/desktop/ui/
+!/desktop/src-tauri/
+!/desktop/installer/
+!/desktop/search-tools.json
+!/desktop/packaging-tools.json
+!/desktop/python-test-exclusions.json
+/desktop/src-tauri/*
+!/desktop/src-tauri/src/
+!/desktop/src-tauri/icons/
+!/desktop/src-tauri/Cargo.toml
+!/desktop/src-tauri/Cargo.lock
+!/desktop/src-tauri/build.rs
+!/desktop/src-tauri/tauri.conf.json
+!/desktop/src-tauri/tauri.installer.conf.json
+/desktop/installer/*
+!/desktop/installer/README.md
+!/desktop/installer/LICENSE-MIT
+!/desktop/installer/installer.nsi
+!/desktop/installer/obsolete-runtime-files.json
+
+# Parser runtime build source only, never generated binaries/wheels.
+!/runtime/
+/runtime/*
+!/runtime/README.md
+!/runtime/build_runtime.py
+!/runtime/build_runtime.sh
+!/runtime/reviewed-notices/
+
+# Explicit execution/build dependency closure. Other checks, measurements,
+# fixtures, experiments and tests stay private and ignored.
+!/scripts/
+/scripts/*
+!/scripts/README.md
+!/scripts/build-windows-installer.ps1
+!/scripts/build-windows-bundle.py
+!/scripts/package-release-sources.py
+!/scripts/build-command-manifest.py
+!/scripts/build-windows-trial-parser.ps1
+!/scripts/prepare-windows-trial.ps1
+!/scripts/check-windows-desktop.ps1
+!/scripts/search-tools-plan.py
+!/scripts/python-test-plan.py
+# Secrets and machine-specific settings: deny even inside allowed trees.
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+credentials*.json
+config.yaml
+config.*.yaml
+
+# Generated dependencies, caches, builds, logs and local stores.
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+node_modules/
+dist/
+build/
+target/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+*.whl
+*.log
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+.DS_Store
+Thumbs.db
+# All personal development assets stay local.
+/dev/
+
+# Public README illustrations only; personal documentation remains in /dev/.
+!/readme-assets/
+/readme-assets/*
+!/readme-assets/app-demo.png
+!/readme-assets/search-demo.png
+
+# Full local README copies; public READMEs are curated separately.
+/readme-local.md
+/readme-local.ko.md
+
+# Selected pipeline diagrams referenced by both public READMEs.
+!/readme-assets/diagrams/
+/readme-assets/diagrams/*
+!/readme-assets/diagrams/app-pipeline.html
+!/readme-assets/diagrams/app-pipeline.png
+!/readme-assets/diagrams/agent-pipeline-v4.html
+!/readme-assets/diagrams/agent-pipeline-v4.png

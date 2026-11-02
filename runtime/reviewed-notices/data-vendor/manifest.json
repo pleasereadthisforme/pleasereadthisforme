@@ -1,0 +1,90 @@
+[
+  {
+    "notice": "data-vendor/installed/kiwipiepy_model-0.24.0.dist-info/licenses/LICENSE.txt",
+    "source": "Installed official package kiwipiepy_model-0.24.0.dist-info/licenses/LICENSE.txt",
+    "sha256": "cd5887085a1b1110bd7b57833c2d3cd1649f49cdcaee2f73f95cda4361cf65db"
+  },
+  {
+    "notice": "data-vendor/installed/kiwipiepy_model-0.24.0.dist-info/licenses/NOTICE",
+    "source": "Installed official package kiwipiepy_model-0.24.0.dist-info/licenses/NOTICE",
+    "sha256": "08684ab73d77ebd38f2a69eba29ec34784aaf0b23a3859485b6e01392207a234"
+  },
+  {
+    "notice": "data-vendor/installed/kiwipiepy-0.24.0.dist-info/licenses/LICENSE.txt",
+    "source": "Installed official package kiwipiepy-0.24.0.dist-info/licenses/LICENSE.txt",
+    "sha256": "867220973ae080843471f59f5134edb48ae80cecdd7d898cfe86d037bebe7507"
+  },
+  {
+    "notice": "data-vendor/installed/kiwipiepy-0.24.0.dist-info/licenses/NOTICE",
+    "source": "Installed official package kiwipiepy-0.24.0.dist-info/licenses/NOTICE",
+    "sha256": "96a9feefe96d911eef281c29b40480db1e0a80db68908d34c5fcf641ba8205eb"
+  },
+  {
+    "notice": "data-vendor/installed/kiwipiepy-0.24.0.dist-info/licenses/Kiwi/third_party/cpp-btree/LICENSE",
+    "source": "Installed official package kiwipiepy-0.24.0.dist-info/licenses/Kiwi/third_party/cpp-btree/LICENSE",
+    "sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6"
+  },
+  {
+    "notice": "data-vendor/installed/kiwipiepy-0.24.0.dist-info/licenses/Kiwi/third_party/cpuinfo/LICENSE",
+    "source": "Installed official package kiwipiepy-0.24.0.dist-info/licenses/Kiwi/third_party/cpuinfo/LICENSE",
+    "sha256": "8477bdd6a4d9f5178e5dfda1e32239c7b09c9d6da3804ae3e5c1a80210c0dd21"
+  },
+  {
+    "notice": "data-vendor/installed/kiwipiepy-0.24.0.dist-info/licenses/Kiwi/third_party/eigen/COPYING.MPL2",
+    "source": "Installed official package kiwipiepy-0.24.0.dist-info/licenses/Kiwi/third_party/eigen/COPYING.MPL2",
+    "sha256": "cde215e5b42363eb28ca2462c4558ff4807b38f383c537624c31e44657ac58f4"
+  },
+  {
+    "notice": "data-vendor/installed/kiwipiepy-0.24.0.dist-info/licenses/Kiwi/third_party/json/LICENSE.MIT",
+    "source": "Installed official package kiwipiepy-0.24.0.dist-info/licenses/Kiwi/third_party/json/LICENSE.MIT",
+    "sha256": "b9715282b2f1db1359a919bb3a542dd4362fd9e38ae72d421367eb11abe62eec"
+  },
+  {
+    "notice": "data-vendor/installed/kiwipiepy-0.24.0.dist-info/licenses/Kiwi/third_party/mimalloc/LICENSE",
+    "source": "Installed official package kiwipiepy-0.24.0.dist-info/licenses/Kiwi/third_party/mimalloc/LICENSE",
+    "sha256": "82ade5d7d9b029044b5fbbc326207fc47c2d44ee4dd71e8a559c36d728217de9"
+  },
+  {
+    "notice": "data-vendor/installed/kiwipiepy-0.24.0.dist-info/licenses/Kiwi/third_party/streamvbyte/LICENSE",
+    "source": "Installed official package kiwipiepy-0.24.0.dist-info/licenses/Kiwi/third_party/streamvbyte/LICENSE",
+    "sha256": "a07e9185cca870c556a44d5b4dff2bea516e0068ecf7984fd9c6818839bfd761"
+  },
+  {
+    "notice": "data-vendor/installed/sudachidict_core-20261015.dist-info/licenses/LICENSE-2.0.txt",
+    "source": "Installed official package sudachidict_core-20261015.dist-info/licenses/LICENSE-2.0.txt",
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  },
+  {
+    "notice": "data-vendor/installed/tiktoken-0.14.0.dist-info/licenses/LICENSE",
+    "source": "Installed official package tiktoken-0.14.0.dist-info/licenses/LICENSE",
+    "sha256": "258463fc3788f1f9b6a3f1820d8a87481ac24018d53167597e25d3e9031851ca"
+  },
+  {
+    "notice": "data-vendor/installed/openai/_vendor/httpx_aiohttp/LICENSE",
+    "source": "Installed official package openai/_vendor/httpx_aiohttp/LICENSE",
+    "sha256": "154759c1e9eb58e42643ee43ec59d556def4d1d702d911a484c469e02f85dd5d"
+  },
+  {
+    "component": "SudachiDict core 20261015",
+    "system_dic_sha256": "e815659f6ad6f6118725103d47d317d660276ff3a15f668f8fc123ec3c4e6646",
+    "legal_matches_release_tag": true,
+    "provenance": "sdist INFO.json/setup.py identifies official dictionary release; binary from installed wheel"
+  },
+  {
+    "python_vendor_directories": [
+      "openai/_vendor"
+    ],
+    "reviewed": "openai/_vendor/httpx_aiohttp BSD-3-Clause original LICENSE preserved"
+  },
+  {
+    "tokenizer_data": [
+      {
+        "url": "https://openaipublic.blob.core.windows.net/encodings/cl100k_base.tiktoken",
+        "sha256": "223921b76ee99bde995b7ff738513eef100fb51d18c93597a113bcffe865b2a7",
+        "path": "tokenizer-data/9b5ad71b2ce5302211f9c61530b329a4922fc6a4"
+      }
+    ],
+    "license_evidence": "https://github.com/openai/tiktoken/issues/92#issuecomment-1497875652",
+    "license": "MIT; upstream maintainer confirms repository license also applies to encoding files"
+  }
+]

@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>OpenAI API 키</title>
+<link rel="stylesheet" href="api-key.css"><script src="api-key.js" defer></script></head>
+<body><main>
+<h1>OpenAI API 키</h1>
+<p id="status" role="status">저장 상태를 확인하고 있습니다.</p>
+<p class="hint">AI에게 질문하거나 문서를 AI로 처리할 때 사용합니다.<br>API 사용 비용은 OpenAI 계정에 청구됩니다.</p>
+<p class="hint">키는 Windows 자격 증명 관리자에 저장됩니다.<br>저장된 키는 이 화면에 표시하지 않습니다.</p>
+<p id="notice" class="hint">등록·교체 시 전용 가림 입력창이 열립니다.<br>변경을 적용하기 위해 앱이 다시 시작됩니다.</p>
+<div id="actions"><button id="save" hidden></button><button id="delete" class="secondary" hidden>키 삭제</button><button id="close" class="secondary">닫기</button></div>
+<section id="confirmation" hidden aria-label="키 삭제 확인"><p>이 앱에 저장된 키를 삭제할까요?</p><p class="hint">OpenAI 계정의 키를 폐기하는 작업은 아닙니다.<br>다시 등록하기 전까지 AI 기능을 사용할 수 없습니다.</p><button id="confirm-delete">키 삭제</button><button id="cancel-delete" class="secondary">돌아가기</button></section>
+</main></body></html>
