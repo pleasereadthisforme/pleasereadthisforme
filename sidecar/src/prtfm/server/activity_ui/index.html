@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+<script src="/activity-ui/i18n.js"></script><script src="/activity-ui/theme.js"></script>
+<title>Please read this for me</title><link rel="stylesheet" href="/activity-ui/style.css">
+</head>
+<body>
+<header class="app-header"><h1>Please read this for me</h1>
+<button id="theme-toggle" type="button" aria-label="다크 모드" aria-pressed="false" title="다크 모드로 전환"><svg class="ui-icon theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z"/></svg><svg class="ui-icon theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></button>
+<button id="folder-add" type="button"><svg class="ui-icon action-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>폴더 등록</button><button id="preferences-open" type="button" aria-label="설정" title="설정"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h6m4 0h6M4 17h10m4 0h2"/><circle cx="12" cy="7" r="2"/><circle cx="16" cy="17" r="2"/></svg></button>
+<p id="connection-status" role="status" class="hint"></p>
+<nav class="mobile-navigation" aria-label="탐색 패널"><button id="open-folders" type="button" aria-controls="folder-panel" aria-expanded="false">폴더</button><button id="open-sessions" type="button" aria-controls="session-panel" aria-expanded="false" aria-label="대화 목록"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 6 6 6-6 6m8-12 6 6-6 6"/></svg></button></nav>
+<details id="settings" hidden><summary>개발용 수동 연결</summary><div class="settings-body">
+<form id="connect">
+<label>서버 인증 토큰<input id="token" type="password" autocomplete="off" required></label>
+<label>문서 폴더 경로<input id="folder" required placeholder="서버에서 접근 가능한 폴더"></label>
+<button type="button" id="folder-open">입력 경로 열기</button><button type="button" id="folder-register">입력 폴더 연결 목록에 추가</button>
+<details class="diagnostics"><summary>실행 기록 직접 열기</summary>
+<p>일반 대화에서는 아래 ID를 입력하지 않아도 됩니다.</p>
+<label>세션 ID<input id="session" required></label><label>실행 ID<input id="run" required></label>
+<button>기록 열기</button><button type="button" id="stop">조회 중지</button></details>
+</form>
+
+</div></details>
+</header>
+<main class="workspace">
+<aside id="folder-panel" class="folder-rail" aria-label="문서 폴더"><button class="panel-close" type="button">폴더 닫기</button>
+<p id="scope-name" class="scope-name sr-only">폴더 미선택</p>
+<button type="button" id="folders-refresh" aria-label="연결 목록 새로고침" title="연결 목록 새로고침"><svg class="ui-icon action-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 4v5h-5M4 20v-5h5M4.9 9a7.5 7.5 0 0 1 12.4-3L20 9M4 15l2.7 3A7.5 7.5 0 0 0 19.1 15"/></svg></button>
+<p id="registered-status" role="status"></p><nav id="registered-folders" aria-label="연결한 폴더"></nav>
+<button type="button" id="semantic-library" aria-label="임베딩 파일 모아 보기" title="임베딩 파일 모아 보기"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.78 5.63 6.22.91-4.5 4.39 1.06 6.2L12 17.2l-5.56 2.93 1.06-6.2L3 9.54l6.22-.91Z"/></svg><span>Embedded files</span></button>
+</aside>
+<section class="chat-column" aria-label="문서 대화">
+<details id="document-panel" class="documents" open><summary hidden>폴더 내부 문서</summary>
+<div class="document-actions"><button type="button" id="folder-up" aria-label="상위 폴더로 돌아가기" title="상위 폴더로 돌아가기"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12H4m6-6-6 6 6 6"/></svg></button></div>
+<div class="folder-heading"><button type="button" id="local-connect" hidden aria-label="선택한 폴더를 연결 목록에 추가" title="선택한 폴더를 연결 목록에 추가" disabled>폴더 등록</button><details id="folder-path-details" class="folder-path" hidden><summary id="folder-path-label"></summary><p id="folder-full-path"></p></details></div>
+<p id="folder-status" role="status">선택한 폴더와 하위 문서가 질문 범위입니다.</p>
+<div class="document-actions prepare-actions"><button type="button" id="folder-index" hidden title="PDF·이미지 문서를 검색할 수 있도록 준비합니다"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H5v18h14V8l-5-5v5h5M8 12h5m-5 4h3"/><path d="m14 15 2 2 4-4"/></svg><span>준비하기</span></button><button type="button" id="folder-cancel" disabled>검색 준비 중지</button></div><p id="folder-cancel-status" role="status"></p>
+<button id="prepare-retry" type="button" hidden>자동 준비 재시도</button>
+<section id="prepare-selection" hidden aria-label="남은 문서 선택"><div class="prepare-selection-toolbar"><span id="prepare-selection-label" title="PDF·이미지는 AI 처리가 필요하며 비용이 발생할 수 있습니다">추가 문서 준비</span><button id="prepare-review" type="button" hidden>예상 비용 확인</button><button id="prepare-selection-cancel" type="button" hidden>취소</button><label class="prepare-selection-total" title="남은 문서 전체 선택"><input id="prepare-select-all" type="checkbox" aria-label="남은 문서 전체 선택"><span id="prepare-selected-count" role="status"></span></label></div></section>
+<nav id="folder-list" aria-label="폴더 내부 목록"></nav><details class="folder-options"><summary>검색 준비 옵션</summary><section class="mode-panel" aria-label="폴더 색인 정책">
+<p>기본 검색은 실제 파일 명령을 사용합니다. 이 설정은 청킹 대상을 바꿉니다. 전환 후 재색인·임베딩 변경이 있으면 되돌릴 수 없습니다.</p>
+<button type="button" id="mode-check">현재 방식 확인</button><button type="button" id="mode-apply" disabled>선택 파일만 청킹하도록 전환</button><button type="button" id="mode-rollback" disabled>이전 방식으로 되돌리기</button>
+<p id="mode-status" role="status">폴더를 선택한 뒤 현재 방식을 확인하세요.</p></section></details></details>
+<section class="chat-frame" aria-label="채팅">
+<section class="conversation-area" aria-label="질문과 답변">
+<p id="chat-status" role="status"></p>
+<button type="button" id="turns-more" hidden>이전 질문 더 보기</button>
+<div id="conversation" aria-label="현재 대화"></div><div id="answer" aria-live="polite"></div>
+<div id="source-home"><nav id="sources" aria-label="답변 출처"></nav>
+<section id="source-view" aria-label="답변 당시 근거 원문" hidden><header class="source-heading"><div><span class="source-eyebrow">답변 근거</span><h3 id="source-title" tabindex="-1"></h3></div><button type="button" id="source-close" aria-label="근거 닫기" title="근거 닫기">×</button></header><p id="source-meta"></p><pre id="source-text"></pre></section></div>
+</section>
+<div class="composer"><p id="agent-scope" class="hint"></p><button id="jump-latest" type="button" hidden>새 답변으로 이동</button>
+<details id="terminal"><summary><span class="terminal-mark" aria-hidden="true">›</span><span id="terminal-summary">Ready</span><span class="expand-label">Details</span></summary>
+<div class="terminal-body"><header class="terminal-heading"><span id="view-mode">Ready</span><p id="status" role="status">Run a question to see the steps.</p></header>
+
+<article id="step-output" hidden><h2 id="title">Ready</h2><p id="detail-status"></p><pre id="detail" tabindex="0"></pre><button id="output-more" type="button" hidden>Show more</button></article>
+<nav id="events" aria-label="Run steps"></nav><footer class="timeline"><button id="latest" hidden>Back to live</button><span class="step-controls"><button id="previous" aria-label="Previous step" disabled>‹</button><span id="step-position">0 / 0</span><button id="next" aria-label="Next step" disabled>›</button></span></footer></div>
+</details>
+<form id="chat"><label for="question" class="sr-only">질문</label><textarea id="question" required rows="1" aria-describedby="composer-keyboard" placeholder="선택한 폴더의 문서에 대해 질문하세요"></textarea><div class="send-actions"><button type="submit" id="send-chat" disabled aria-label="질문 보내기" title="질문 보내기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></button><button type="button" id="cancel-chat" aria-label="질문 중지" title="질문 중지" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg></button></div></form>
+<div class="composer-help"><details class="data-notice"><summary>전송·비용 안내</summary>
+<div><p>질문을 보내면 질문, 답변에 사용하는 이전 대화, 검색·읽기 결과의 문서 내용과 파일명·경로가 설정된 모델 제공자에 전송되며 비용이 발생할 수 있습니다. 별표가 없는 파일의 내용도 기본 탐색을 통해 전송될 수 있습니다.</p>
+<p>의미 검색을 사용하면 검색어도 임베딩 제공자에 전송됩니다. 파일 임베딩과 PDF·이미지 AI 처리는 별도로 대상과 예상 비용을 확인한 뒤 실행합니다. 견적은 실제 청구액이나 비용 상한을 보장하지 않습니다.</p>
+<p>앱 시작·폴더 연결의 로컬 준비·저장된 대화 조회는 모델을 호출하지 않습니다. 취소·종료 전에 전송된 요청은 비용이 발생할 수 있으며, 앱에서 기록을 삭제해도 제공자에 전송한 데이터를 회수하지 않습니다. 실제 청구 내역은 제공자에서 확인하세요.</p></div></details><span id="composer-keyboard">Enter 전송 · Shift+Enter 줄바꿈</span></div>
+</div></section></section>
+<details id="session-panel"><summary aria-label="대화 목록 열기 또는 닫기" title="대화 목록"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 6 6 6-6 6m8-12 6 6-6 6"/></svg></summary><div class="session-body"><button class="panel-close" type="button">대화 목록 닫기</button><div class="session-heading"><h2>대화</h2><button type="button" id="history-new" aria-label="새 대화" title="새 대화"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg></button></div><p id="history-status" role="status">서버에 연결하면 폴더 선택 없이 이전 대화를 볼 수 있습니다.</p><button id="history-connect" type="button" hidden>연결 방법 보기</button><nav id="history-list" aria-label="저장 대화"></nav><button type="button" id="history-more" hidden>대화 더 보기</button></div></details>
+</main>
+<details id="startup-recovery" class="startup-recovery" hidden>
+<summary id="startup-recovery-toggle">이전 작업 확인 <span id="recovery-state"></span></summary>
+<div class="recovery-body"><header class="recovery-heading"><div><h2>이전 작업 확인</h2><p class="hint">중단된 작업과 비용 기록</p></div><button id="recovery-close" type="button" aria-label="이전 작업 확인 접기">×</button></header>
+<p id="startup-recovery-counts" role="status"></p><div id="recovery-items"></div>
+<details class="recovery-help"><summary>비용·재처리 안내</summary><p>미완료와 비용 미확정 기록은 서로 겹칠 수 있으며 과거 중단 기록도 포함됩니다. 이미 전송한 요청은 비용이 발생했을 수 있습니다. 실제 청구 내역은 제공자에서 확인하세요.</p><p>다시 처리하려면 해당 폴더에서 문서를 선택하고 새 견적을 확인하세요. 대화는 열어서 질문을 다시 보낼 수 있습니다.</p></details>
+<p id="recovery-message" role="status"></p><footer><span>요청을 자동으로 다시 보내지 않습니다.</span><button id="recovery-refresh" type="button"><svg class="ui-icon action-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 4v5h-5M4 20v-5h5M4.9 9a7.5 7.5 0 0 1 12.4-3L20 9M4 15l2.7 3A7.5 7.5 0 0 0 19.1 15"/></svg>새로고침</button></footer>
+</div></details>
+<dialog id="folder-disconnect" class="semantic-dialog" aria-labelledby="disconnect-title"><h2 id="disconnect-title">폴더 연결 해제</h2>
+<p id="disconnect-path"></p><p><strong>원본 폴더와 파일은 삭제하지 않습니다.</strong></p>
+<p>연결만 해제하면 처리 결과·임베딩·대화가 보존되어 다시 연결할 때 재사용할 수 있습니다.</p>
+<p>앱 데이터도 삭제하면 이 연결 폴더의 문서 처리 결과·임베딩 연결·대화와 출처·작업 및 비용 기록을 삭제합니다. 다른 연결 폴더의 데이터는 유지합니다. 삭제한 대화는 복구할 수 없으며, 다시 처리하거나 임베딩하면 비용이 발생할 수 있습니다.</p>
+<p class="hint">공유 분석 캐시와 내부 동시 실행 방지용 잠금 파일은 남을 수 있습니다. 앱 기록 삭제가 제공자의 청구·전송 기록을 삭제하지는 않습니다.</p>
+<label class="disconnect-consent"><input id="disconnect-consent" type="checkbox">앱 데이터 삭제 범위와 재처리 비용 가능성을 확인했습니다.</label>
+<p id="disconnect-status" role="status"></p><div class="disconnect-actions"><button id="disconnect-only" type="button">연결만 해제</button><button id="disconnect-delete" type="button" disabled>앱 데이터도 삭제</button><button id="disconnect-cancel" type="button">취소</button></div></dialog>
+<dialog id="folder-picker" class="semantic-dialog" aria-labelledby="folder-picker-title"><h2 id="folder-picker-title">연결할 폴더 선택</h2><p class="hint">연결하면 이 폴더와 하위 문서를 탐색할 수 있습니다.</p><hr class="folder-divider"><button type="button" id="local-refresh" aria-label="탐색 시작 폴더로 이동" title="탐색 시작 폴더로 이동"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m3 10 9-7 9 7M5 9v12h5v-7h4v7h5V9"/></svg></button>
+<p id="local-status" role="status">앱에 연결되면 폴더를 탐색할 수 있습니다.</p>
+<button type="button" id="local-up" aria-label="뒤로가기" title="뒤로가기" disabled><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12H4m6-6-6 6 6 6"/></svg></button><nav id="local-folders" aria-label="로컬 폴더 탐색"></nav><p id="picker-path" class="hint"></p><p id="picker-status" role="status"></p><div class="semantic-actions"><button type="button" id="picker-connect">이 폴더 등록</button><button type="button" id="picker-close">취소</button></div></dialog>
+<dialog id="semantic-library-dialog" class="semantic-dialog" aria-labelledby="semantic-library-title"><div class="session-heading"><h2 id="semantic-library-title">임베딩 파일</h2><button id="semantic-library-close" type="button" aria-label="목록 닫기">×</button></div><p id="semantic-library-status" role="status"></p><nav id="semantic-library-list" aria-label="임베딩 등록 파일"></nav></dialog>
+<dialog id="prepare-excluded" class="semantic-dialog" aria-labelledby="prepare-excluded-title">
+<header class="prepare-heading"><h2 id="prepare-excluded-title">문서 준비</h2></header>
+<div class="prepare-columns" aria-hidden="true"><span>문서</span><span>처리 대상</span><span>예상 비용</span><span></span></div>
+<div id="prepare-excluded-list"></div><p id="prepare-excluded-status" role="status"></p>
+<footer class="prepare-footer"><p id="prepare-cost-total"></p><p id="prepare-cost-note" class="hint"></p>
+<details><summary>전송·비용 안내</summary><p>견적은 로컬에서 계산합니다. 실행하면 선택한 표·이미지·스캔 페이지가 OpenAI에 전송됩니다. 일반 텍스트 페이지는 로컬에서 추출합니다.</p><p>GPT-6 Luna의 이미지 입력과 출력 길이를 가정한 예상 범위이며 실제 청구액이나 비용 상한을 보장하지 않습니다. 견적은 30분간 유효합니다. 실패·중지된 요청에도 비용이 발생할 수 있습니다.</p></details>
+<label id="prepare-consent-row" hidden><input id="prepare-consent" type="checkbox">OpenAI 전송과 예상 비용에 동의합니다.</label>
+<div class="semantic-actions"><button type="button" id="prepare-quote-retry" hidden>다시 계산</button><button type="button" id="prepare-execute" hidden disabled>문서 준비</button><button type="button" id="prepare-stop" hidden>중지</button><button type="button" id="prepare-excluded-close">닫기</button></div></footer></dialog>
+<dialog id="storage-dialog" class="semantic-dialog" aria-labelledby="storage-title">
+<div class="session-heading"><button id="storage-back" type="button" hidden aria-label="설정으로 돌아가기" title="설정으로 돌아가기"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7"/></svg></button><h2 id="storage-title">전체 앱 저장소</h2></div>
+<p id="storage-status" role="status"></p>
+<div id="storage-content" hidden>
+<div class="storage-overview"><div><p class="hint">앱 데이터 사용량</p><div id="storage-size">—</div><p class="hint">중복 제외</p></div><p id="storage-observed" class="hint"></p></div>
+<section id="storage-meter" aria-label="데이터 구성" hidden><p class="hint">데이터 구성</p><div id="storage-meter-bar"></div><div class="storage-meter-scale" aria-hidden="true"><span>0</span><span>25</span><span>50</span><span>75</span><span>100%</span></div><div id="storage-meter-keys"></div><p id="storage-meter-detail" class="hint" aria-live="polite" hidden></p></section>
+<details class="storage-explanation"><summary>집계 기준</summary><p id="storage-total" class="hint"></p><p class="hint">막대는 종류별 용량의 구성비이며 디스크 잔여 공간이 아닙니다. 공유분이 중복 포함될 수 있어 전체 크기와 다를 수 있습니다. 파일 수는 앱 내부 파일 수이며 실제 디스크 점유량과 다를 수 있습니다.</p></details>
+<h3 class="storage-subheading"><span aria-hidden="true">01 /</span> 종류별 사용량</h3>
+<table id="storage-table"><thead><tr><th scope="col">종류</th><th scope="col">내부 파일</th><th scope="col">크기</th><th scope="col"><span class="sr-only">정리</span></th></tr></thead><tbody id="storage-rows"></tbody></table>
+<p class="hint storage-preserve">원본 폴더와 파일은 삭제하지 않습니다. 다시 문서 준비·임베딩 시 비용이 발생할 수 있습니다.</p><h3 class="storage-subheading"><span aria-hidden="true">02 /</span> 폴더별 사용량</h3><p class="hint">휴지통은 해당 폴더의 앱 데이터를 삭제하고 연결도 해제합니다. 원본 폴더와 파일은 삭제하지 않습니다.</p><p id="storage-folders-note" class="hint"></p>
+<div class="storage-table-scroll"><table id="storage-folders-table"><thead><tr><th scope="col">폴더</th><th scope="col">상태</th><th scope="col">내부 파일</th><th scope="col">크기</th><th scope="col" aria-label="삭제"></th></tr></thead><tbody id="storage-folder-rows"></tbody></table></div>
+<p class="hint">공유 임베딩·분석 캐시 등은 ‘공통·공유 데이터’로 표시합니다. 폴더별 크기는 공유 본문이 중복 포함될 수 있으며, 삭제 시 확보되는 공간을 뜻하지 않습니다.</p>
+<details class="storage-explanation"><summary>앱 데이터 저장 위치</summary><p id="storage-location" class="hint"></p><p id="storage-path"></p></details></div>
+<details class="storage-explanation"><summary>보관·백업 안내</summary><p class="hint">연결한 폴더의 원본 파일은 삭제되지 않습니다. 정리 기능은 앱이 저장한 데이터만 대상으로 합니다. 문서 처리 결과나 임베딩을 다시 생성하면 비용이 발생할 수 있습니다. 앱 제거만으로는 앱 데이터가 삭제되지 않습니다.</p>
+<p class="hint">Windows 설치 앱의 API 키는 현재 사용자·앱 채널별 Windows 자격 증명 관리자에 저장합니다. 설정의 API 키에서 입력·삭제할 수 있습니다. 앱 제거만으로 저장 키를 삭제하거나 제공자 계정의 키를 폐기하지 않습니다.</p>
+<p class="hint">백업에는 문서 처리 결과·임베딩·대화가 포함될 수 있으며 암호화되지 않습니다. 원본 문서와 API 키는 백업에 포함하지 않습니다.</p></details>
+
+<div class="storage-footer"><button id="storage-refresh" type="button"><svg class="ui-icon action-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 4v5h-5M4 20v-5h5M4.9 9a7.5 7.5 0 0 1 12.4-3L20 9M4 15l2.7 3A7.5 7.5 0 0 0 19.1 15"/></svg>새로고침</button><button id="storage-close" type="button">닫기</button></div></dialog>
+<dialog id="storage-cleanup" class="semantic-dialog" aria-labelledby="storage-cleanup-title">
+<h3 id="storage-cleanup-title" tabindex="-1"></h3><p id="storage-cleanup-description"></p>
+<p class="hint">원본 파일은 삭제되지 않습니다. 표시된 저장소 용량은 실제 확보 공간과 다를 수 있습니다.</p>
+<nav id="storage-processed-list" aria-label="삭제할 문서 처리 결과"></nav><p id="storage-cleanup-status" role="status"></p>
+<div class="semantic-actions"><button id="storage-cleanup-confirm" type="button">정리</button><button id="storage-cleanup-cancel" type="button">취소</button></div></dialog>
+<dialog id="preferences-dialog" class="semantic-dialog" aria-labelledby="preferences-title">
+<div class="preferences-heading"><button id="preferences-back" type="button" hidden aria-label="설정으로 돌아가기" title="설정으로 돌아가기"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7"/></svg></button><h2 id="preferences-title" tabindex="-1">설정</h2></div>
+<nav id="preferences-list" class="preferences-list" aria-label="설정 항목"><button type="button" data-preference="language"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-5 5-5 13 0 18 5-5 5-13 0-18"/></svg><span><strong>언어</strong><small>English / 한국어</small></span><span class="preference-value" id="preference-language-value"></span></button><button type="button" data-preference="name"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg><span><strong>에이전트 이름</strong><small>폴더 연결 안내에 표시할 이름</small></span><span class="preference-value"><span id="preference-name-value">agent</span><span aria-hidden="true"> ›</span></span></button><button type="button" data-preference="keys"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="9" r="4"/><path d="m11 12 8 8m-3-3 3-3m-6 0 3-3"/></svg><span><strong>API 키</strong><small>등록 상태와 키 관리</small></span><span class="preference-value"><span id="preference-keys-value">확인 전</span><span aria-hidden="true"> ›</span></span></button><button type="button" data-preference="data"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></svg><span><strong>앱 데이터</strong><small>사용량 확인 및 정리</small></span><span class="preference-value"><span id="preference-data-value"></span><span aria-hidden="true"> ›</span></span></button><button type="button" data-preference="backup"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16v13H4ZM3 3h18v5H3Zm6 9h6"/></svg><span><strong>백업</strong><small>처리 결과와 대화 보관</small></span><span class="preference-value"><span id="preference-backup-value"></span><span aria-hidden="true"> ›</span></span></button><button type="button" data-preference="privacy"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h10l4 4v14H5ZM9 11h6M9 15h6"/></svg><span><strong>개인정보·이용 안내</strong><small>외부 전송, 보관과 삭제 범위</small></span><span class="preference-value" aria-hidden="true"> ›</span></button></nav>
+<section data-preference-panel="language" hidden>
+<form id="language-form">
+<fieldset class="language-options" aria-labelledby="preferences-title">
+<label class="language-option" for="ui-language-en"><span lang="en">English</span><input id="ui-language-en" type="radio" name="ui-language" value="en"></label>
+<label class="language-option" for="ui-language-ko"><span lang="ko">한국어</span><input id="ui-language-ko" type="radio" name="ui-language" value="ko"></label>
+</fieldset>
+<div class="language-actions"><button type="submit">저장</button></div>
+</form>
+</section>
+<section data-preference-panel="name"><form id="agent-name-form"><label for="agent-name">에이전트 이름</label><input id="agent-name" maxlength="40" required autocomplete="off"><button type="submit">저장</button></form></section>
+<section data-preference-panel="keys" hidden>
+<div class="key-provider"><div><h3>OpenAI</h3><p class="hint">이 앱에서 사용하는 모델 제공자</p></div><span id="key-state-badge">확인 중</span></div>
+<div id="key-management"><p id="key-registration" role="status">등록 상태 확인 중…</p><div class="key-actions"><button id="preferences-keys" type="button">＋ 등록</button><button id="preferences-key-delete" type="button" hidden>삭제</button></div></div>
+<div id="key-delete-confirmation" hidden><h3>이 앱에 저장된 키를 삭제할까요?</h3><p class="hint">OpenAI 계정의 키를 폐기하는 작업은 아닙니다. 적용을 위해 앱이 재시작됩니다.</p><div class="key-actions"><button id="key-delete-cancel" type="button">취소</button><button id="key-delete-confirm" type="button">저장된 키 삭제</button></div></div>
+<details class="key-disclosure"><summary>입력·보관 방식</summary><p id="key-input-hint" class="hint">키 입력은 별도의 가림 입력창에서 처리합니다. 저장·삭제 후 변경 적용을 위해 앱이 재시작됩니다.</p><ul class="hint"><li>설치형 앱의 키는 Windows 자격 증명 관리자에 사용자·앱 채널별로 보관합니다.</li><li>설정 화면에는 저장된 키 값을 표시하지 않습니다.</li><li>등록 여부는 키 유효성이나 잔액을 확인한 결과가 아닙니다.</li></ul></details></section>
+<section data-preference-panel="data" hidden><p>앱 저장 위치와 사용량을 확인하고 정리합니다. 원본 문서는 삭제하지 않습니다.</p><button id="storage-open" type="button">전체 앱 저장소</button></section>
+<section data-preference-panel="backup" hidden><p>문서 처리 결과·임베딩·대화 기록을 백업합니다. 원본 문서와 API 키는 제외되며 백업은 암호화되지 않습니다.</p><button id="preferences-backup" type="button">백업 만들기</button></section>
+<section data-preference-panel="privacy" hidden>
+<p><strong>개인정보·이용 안내</strong> · 운영자: ayaan · 배포 대상: 전 세계 · 시행일: 최초 공개 배포일.</p>
+<details><summary>데이터 저장과 운영자</summary><p>원본 파일은 선택한 폴더에, 앱이 생성한 처리 결과·대화·설정은 사용자 기기의 로컬 저장소에 보관합니다. 앱은 문서·질문·답변·API 키·사용 기록을 운영자 ayaan에게 전송하지 않으며, 운영자 서버를 경유하지 않습니다.</p></details>
+<details><summary>OpenAI 전송·처리와 비용</summary><p>질문·대화 문맥·필요한 문서 본문·경로·도구 출력은 사용자 API 키로 OpenAI에 직접 전송될 수 있습니다. 답변 전 원격 토큰 계산에도 입력이 전송됩니다. 의미 검색은 검색어와 임베딩 대상 본문을, 승인한 문서 준비는 페이지·이미지를 전송합니다. 폴더 등록만으로 전체 파일을 전송하지 않습니다.</p><p>전송된 데이터는 API 키가 속한 계정·조직·프로젝트에 적용되는 OpenAI 약관·계약과 데이터 설정에 따라 처리됩니다. 앱은 이 설정을 변경하지 않습니다.</p><p>API 데이터는 기본적으로 모델 학습에 사용되지 않으며, 별도 데이터 공유에 동의했다면 해당 설정이 적용됩니다. ChatGPT의 학습 설정과는 별개입니다. 학습 제외는 무보관을 뜻하지 않으며, store=false도 무보관을 보장하지 않습니다.</p><p>비용은 사용자 API 계정에 청구됩니다. 견적은 비용 상한을 보장하지 않으며, 중단해도 이미 전송된 데이터나 발생한 비용은 되돌릴 수 없습니다.</p></details>
+<details><summary>로컬 보관과 삭제</summary><p>문서 처리 결과·임베딩·대화·출처·실행 기록과 요청/응답 snapshot을 앱 저장소에 보관합니다. 본문·경로가 포함될 수 있으며 자동 만료하지 않습니다. 설정의 앱 데이터에서 범위별로 정리할 수 있습니다.</p><p>연결만 해제하면 데이터는 남습니다. 문서 처리 결과를 삭제해도 이전 대화의 출처는 남을 수 있습니다. 공유 참조·별도 백업은 남을 수 있으며 원본 파일은 삭제하지 않습니다. 백업은 암호화되지 않습니다. 앱 제거는 앱 데이터 삭제가 아니며 DB 논리 삭제는 물리적 완전 소거 보장이 아닙니다.</p></details>
+<details><summary>키·브라우저 저장소</summary><p>Windows 키는 OS 자격 증명 관리자로 보관하고 입력은 별도 가림 입력창을 사용합니다. 키 삭제는 로컬 저장분 삭제이며 제공자 키 폐기는 별도입니다. 테마·개발 웹 이름은 localStorage, 개발 웹의 로컬 API 인증 토큰은 sessionStorage를 사용합니다. 이 토큰은 OpenAI 키가 아닙니다.</p></details>
+<details><summary>Preview 이용과 문의</summary><p>현재 Windows x64 Preview 대상입니다. 답변과 출처는 원문으로 확인하세요. AGPL 라이선스의 수정·배포 권리는 이용 안내로 제한하지 않습니다. 배포물의 PRIVACY.md·TERMS.md에 상세 안내가 있습니다.</p><p>문의는 프로젝트의 공개 GitHub Issues만 사용하며 비공개 문의처는 없습니다. 키·개인정보·원문·전체 로그·백업을 올리지 마세요. 삭제 요청은 민감 내용을 반복하지 말고 해당 이슈 주소로 알려주세요. 이슈 닫기는 삭제가 아니며 사본·알림 메일은 회수되지 않습니다. 앱 삭제 버튼으로 OpenAI·GitHub의 보관분은 삭제되지 않습니다.</p></details>
+</section>
+<p id="preferences-message" role="status"></p><footer class="preferences-footer"><button id="preferences-close" type="button">닫기</button></footer></dialog>
+<div id="panel-backdrop" hidden></div><svg id="folder-links" aria-hidden="true"></svg>
+<script src="/activity-ui/localize-markup.js"></script><script src="/activity-ui/characters.js"></script><script src="/activity-ui/app.js"></script><script src="/activity-ui/ux.js"></script><script src="/activity-ui/semantic.js"></script><script src="/activity-ui/storage.js"></script><script src="/activity-ui/preferences.js"></script></body></html>

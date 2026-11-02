@@ -1,0 +1,8 @@
+{
+  "tauri_cli": {
+    "version": "2.12.4",
+    "url": "https://github.com/tauri-apps/tauri/releases/download/tauri-cli-v2.12.4/cargo-tauri-x86_64-pc-windows-msvc.zip",
+    "sha256": "3e8687fb184bd7f10ebd8642f7715f79f4a605c0694c142a21507e8a24dc0f8b"
+  },
+  "notes": "Tauri verifies its downloaded NSIS and nsis-tauri-utils artifacts. Local unsigned Preview only."
+}

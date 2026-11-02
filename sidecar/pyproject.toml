@@ -1,0 +1,45 @@
+[project]
+name = "prtfm"
+version = "0.1.0"
+description = "PleaseReadThisForMe sidecar"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "opendataloader-pdf==2.5.11",
+    "pdfplumber==0.11.10",
+    "pypdf==6.19.0",
+    "pypdfium2>=4.30",
+    "pillow>=11",
+    "python-docx>=1.1",
+    "python-pptx>=1.0",
+    "kiwipiepy>=0.24",
+    "sudachipy>=0.6",
+    "sudachidict-core",
+    "openai>=3.33",
+    "fastapi>=0.115",
+    "uvicorn>=0.30",
+    "regex>=2024.4",
+    "lancedb==0.40.0",
+    "tiktoken>=0.14.0",
+]
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6", "httpx2>=2.13"]
+
+[project.scripts]
+prtfm = "prtfm.cli:main"
+prtfm-server = "prtfm.server.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/prtfm"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]  # 한글은 폭 2로 계산돼 줄 길이 규칙이 과하게 걸림 — 길이는 리뷰로 관리

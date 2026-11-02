@@ -1,0 +1,23 @@
+{
+  "python/Lib/site-packages/sudachidict_core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "python/Lib/site-packages/sudachidict_core/resources/system.dic": "e815659f6ad6f6118725103d47d317d660276ff3a15f668f8fc123ec3c4e6646",
+  "python/Lib/site-packages/kiwipiepy_model/combiningRule.txt": "4f78771daa3dd8a52aa0b5c8824396578ece8e8bbaa11cf3add82721b046bc15",
+  "python/Lib/site-packages/kiwipiepy_model/cong.mdl": "5f64105e45f04e5313f41c0ff1db5fe629780c8076c4a6fd3b1b2cf78c2cc934",
+  "python/Lib/site-packages/kiwipiepy_model/default.dict": "d4293e44b2588d0c3aabbce607a0f41ad3534abd31b34139847b127254e01549",
+  "python/Lib/site-packages/kiwipiepy_model/dialect.dict": "bb6f0ab37dbfcc0fd33dc679121218d24725ae438f31bb362f9b24703e93cda2",
+  "python/Lib/site-packages/kiwipiepy_model/extract.mdl": "a0c92ffc051e43ae497845cdb8d4c8b9e2f359893cb55c67279c76d1d531ee17",
+  "python/Lib/site-packages/kiwipiepy_model/multi.dict": "e9eff7712d163b214c750333a5d388ab77b50ec386ae55b360babcd24c0c3195",
+  "python/Lib/site-packages/kiwipiepy_model/nounchr.mdl": "4b687e36836dd60dcb7addcfcf369ac082b339bab76549574ac1ce2b7ccd6836",
+  "python/Lib/site-packages/kiwipiepy_model/sj.morph": "d0af27b3863799cc2058f66c8058cb2bc0d16e8ae0daaf42c7739b4e375523d7",
+  "python/Lib/site-packages/kiwipiepy_model/typo.dict": "aa15e48fcd32886441fc1ff9719a3109d3192e91d4b67efbd64260610d68322d",
+  "python/Lib/site-packages/kiwipiepy_model/_version.py": "ad878d7690e1a31a2f9c7f2d9903911c8a17ca0db73fed191a81529205aec7eb",
+  "python/Lib/site-packages/kiwipiepy_model/__init__.py": "c6cbd64698bbe75ed516dc8631ab24d86fa93cb82eee299805cb266224e95dd0",
+  "python/Lib/site-packages/openai/_vendor/__init__.py": "8af5c4061a2d7158edf243273e4fe6787832e4cba8e99ff999f01654b6803b90",
+  "python/Lib/site-packages/openai/_vendor/httpx_aiohttp/client.py": "c7f6cb750732322ef8bbc18ae129d74076e45b0245ebfb09ce2425d2b1461fa8",
+  "python/Lib/site-packages/openai/_vendor/httpx_aiohttp/FORK.md": "672063738ed96ec5ff9553a18d0a1a371ecfd3156a712deb74aee9bf57d81ea2",
+  "python/Lib/site-packages/openai/_vendor/httpx_aiohttp/LICENSE": "154759c1e9eb58e42643ee43ec59d556def4d1d702d911a484c469e02f85dd5d",
+  "python/Lib/site-packages/openai/_vendor/httpx_aiohttp/README.md": "6a45d8bdc1e377fecc6c122b3ca586cabb0bd595b3c1505e6cc5f0af85d7af7b",
+  "python/Lib/site-packages/openai/_vendor/httpx_aiohttp/transport.py": "cedf17fbf57ea242c36d141690e39b944162c9a84f1fdfb1cb194d698e32cc40",
+  "python/Lib/site-packages/openai/_vendor/httpx_aiohttp/__init__.py": "f1925ca049c372847b66b7842408ba7dd603751ccf07a3af97cc19e1f4a72aa5",
+  "tokenizer-data/9b5ad71b2ce5302211f9c61530b329a4922fc6a4": "223921b76ee99bde995b7ff738513eef100fb51d18c93597a113bcffe865b2a7"
+}

@@ -1,0 +1,4 @@
+{
+  "python/Lib/site-packages/lancedb/_lancedb.pyd": "c0472c885b0df1a0f10b91aa52d33b792b1e684d28b37581f995ea3e68533756",
+  "python/Lib/site-packages/cryptography/hazmat/bindings/_rust.pyd": "1d4332a447cab13dec8e3a533ad579e0e562b79e40822c931f33769758fc7156"
+}

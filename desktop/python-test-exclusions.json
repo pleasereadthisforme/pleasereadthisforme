@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "directories": [
+    "python/Lib/site-packages/colorama/tests",
+    "python/Lib/site-packages/lance_namespace/tests",
+    "python/Lib/site-packages/numpy/_core/tests",
+    "python/Lib/site-packages/numpy/_pyinstaller/tests",
+    "python/Lib/site-packages/numpy/f2py/tests",
+    "python/Lib/site-packages/numpy/fft/tests",
+    "python/Lib/site-packages/numpy/lib/tests",
+    "python/Lib/site-packages/numpy/linalg/tests",
+    "python/Lib/site-packages/numpy/ma/tests",
+    "python/Lib/site-packages/numpy/matrixlib/tests",
+    "python/Lib/site-packages/numpy/polynomial/tests",
+    "python/Lib/site-packages/numpy/random/tests",
+    "python/Lib/site-packages/numpy/testing/tests",
+    "python/Lib/site-packages/numpy/tests",
+    "python/Lib/site-packages/numpy/typing/tests",
+    "python/Lib/site-packages/pyarrow/tests",
+    "python/Lib/site-packages/regex/tests"
+  ]
+}

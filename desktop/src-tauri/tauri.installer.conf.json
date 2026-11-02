@@ -1,0 +1,31 @@
+{
+  "productName": "Please read this for me Preview",
+  "identifier": "app.prtfm.desktop.preview",
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "icon": [
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "allowDowngrades": false,
+      "bundleVCRuntime": true,
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper",
+        "silent": true
+      },
+      "nsis": {
+        "installMode": "currentUser",
+        "languages": [
+          "English",
+          "Korean"
+        ],
+        "displayLanguageSelector": true,
+        "compression": "lzma",
+        "template": "../installer/installer.nsi"
+      }
+    }
+  }
+}

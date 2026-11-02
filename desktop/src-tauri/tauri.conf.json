@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Please read this for me",
+  "version": "0.1.0",
+  "identifier": "app.prtfm.desktop",
+  "build": { "frontendDist": "../ui" },
+  "app": {
+    "windows": [{ "label": "boot", "title": "Please read this for me", "width": 640, "height": 360 }],
+    "security": { "csp": "default-src 'self'; style-src 'self' 'unsafe-inline'", "capabilities": [] }
+  },
+  "bundle": { "active": false }
+}
