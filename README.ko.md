@@ -119,21 +119,48 @@ Windows x64 설치형 Preview · 모델 호출에 OpenAI API 키 필요 · 선�
 
 ## 동작 방식
 
-### 앱 파이프라인
+### 전체 시스템
 
-<img src="readme-assets/diagrams/app-pipeline.png" alt="앱 파이프라인" width="720">
+<img src="readme-assets/architecture/whole-system.gif" alt="질문부터 검색·본문 읽기·답변 저장까지 네 층을 오가는 데이터 흐름" width="800">
 
-문서 준비와 선택 파일 임베딩은 선택 기능입니다. 모델 요청은 사용자 API 키를 사용합니다.
+준비된 문서에 질문하고 근거를 확인하는 설명용 재생입니다. 이 예시는 의미 검색을 포함하며, 모든 질문이 같은 경로를 실행하지는 않습니다. 문서 준비·임베딩 생성은 별도 작업입니다.
 
-[HTML 원본](readme-assets/diagrams/app-pipeline.html)
+에이전트는 파일 탐색·선택적 의미 검색·본문 읽기를 반복합니다. 검색 후보는 본문을 읽고 검증한 뒤 인용할 수 있으며, 인용 참조 검사는 모든 주장의 사실 검증을 뜻하지 않습니다.
 
-### 에이전트 파이프라인
+<details>
+<summary>앱 구성</summary>
 
-<img src="readme-assets/diagrams/agent-pipeline-v4.png" alt="에이전트 파이프라인" width="720">
+<img src="readme-assets/architecture/app.png" alt="앱 구성" width="800">
 
-에이전트가 파일 탐색·선택적 의미 검색·본문 읽기를 반복하며 근거를 모읍니다. 기본적으로 파일 탐색을 우선하고, 의미 검색 후보는 본문을 읽은 뒤 인용합니다. 인용 참조 확인은 모든 주장의 사실 검증을 의미하지 않습니다.
+</details>
 
-[HTML 원본](readme-assets/diagrams/agent-pipeline-v4.html)
+<details>
+<summary>에이전트 파이프라인</summary>
+
+<img src="readme-assets/architecture/agent.png" alt="에이전트 파이프라인" width="800">
+
+</details>
+
+<details>
+<summary>검색 로직</summary>
+
+<img src="readme-assets/architecture/search.png" alt="검색 로직" width="800">
+
+</details>
+
+<details>
+<summary>본문 읽기와 근거 검증</summary>
+
+<img src="readme-assets/architecture/read.png" alt="본문 읽기와 근거 검증" width="800">
+
+</details>
+
+<details>
+<summary>임베딩 준비와 검색</summary>
+
+<img src="readme-assets/architecture/embedding.png" alt="임베딩 준비와 검색" width="800">
+
+</details>
 
 ## 데이터와 비용
 
