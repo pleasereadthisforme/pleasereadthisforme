@@ -116,3 +116,13 @@ Thumbs.db
 !/readme-assets/diagrams/app-pipeline.png
 !/readme-assets/diagrams/agent-pipeline-v4.html
 !/readme-assets/diagrams/agent-pipeline-v4.png
+
+# Selected system atlas exports referenced by the public READMEs.
+!/readme-assets/architecture/
+/readme-assets/architecture/*
+!/readme-assets/architecture/whole-system.gif
+!/readme-assets/architecture/app.png
+!/readme-assets/architecture/agent.png
+!/readme-assets/architecture/search.png
+!/readme-assets/architecture/read.png
+!/readme-assets/architecture/embedding.png
