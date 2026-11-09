@@ -123,21 +123,48 @@ The lower-panel “previous work” view shows interrupted or incomplete records
 
 ## How it works
 
-### Application pipeline
+### Whole system
 
-<img src="readme-assets/diagrams/app-pipeline.png" alt="Application pipeline" width="720">
+<img src="readme-assets/architecture/whole-system.gif" alt="An animated request through the app, agent, search, reading and embedding layers" width="800">
 
-Document preparation and selected-file embedding are optional. Model requests use your API key.
+An illustrative request through prepared documents, including optional semantic search. Not every question follows this route. Document preparation and embedding generation are separate operations.
 
-[HTML source](readme-assets/diagrams/app-pipeline.html)
+The agent combines file exploration, optional semantic search and source reading. Candidates must be read and validated before citation. Citation-reference checks do not verify every factual claim.
 
-### Agent pipeline
+<details>
+<summary>Application architecture</summary>
 
-<img src="readme-assets/diagrams/agent-pipeline-v4.png" alt="Agent pipeline" width="720">
+<img src="readme-assets/architecture/app.png" alt="Application architecture" width="800">
 
-The agent chooses file exploration, optional semantic search and source reading in a bounded loop. File exploration comes first by default; semantic candidates must be read before citation. Citation-reference checks do not verify every factual claim.
+</details>
 
-[HTML source](readme-assets/diagrams/agent-pipeline-v4.html)
+<details>
+<summary>Agent pipeline</summary>
+
+<img src="readme-assets/architecture/agent.png" alt="Agent pipeline" width="800">
+
+</details>
+
+<details>
+<summary>Search logic</summary>
+
+<img src="readme-assets/architecture/search.png" alt="Search logic" width="800">
+
+</details>
+
+<details>
+<summary>Read passages and evidence validation</summary>
+
+<img src="readme-assets/architecture/read.png" alt="Read passages and evidence validation" width="800">
+
+</details>
+
+<details>
+<summary>Embedding preparation and retrieval</summary>
+
+<img src="readme-assets/architecture/embedding.png" alt="Embedding preparation and retrieval" width="800">
+
+</details>
 
 ## Data and costs
 
